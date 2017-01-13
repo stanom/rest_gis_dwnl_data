@@ -14,11 +14,11 @@ epsg=4326
 OutputLayer="katastre.shp"
 
 echo `date`
-while [ $count -le ${MaxID} ]
+while [ ${count} -le ${MaxID} ]
 do
-    let "kazdy_desiaty = $count % 10"
-    if [[ $kazdy_desiaty -eq 0 ]];
-        then echo "$count";
+    let "kazdy_desiaty = ${count} % 10"
+    if [[ ${kazdy_desiaty} -eq 0 ]];
+        then printf "${count} ";
     fi
     ogr2ogr --config SHAPE_ENCODING UTF-8 -f "ESRI Shapefile" ${OutputLayer} -append "${RestLayer}/query?where=&objectids=${count}&outfields=${OutFields}&outSR=${epsg}&returnGeometry=true&returnCountOnly=false&f=json" OGRGeoJSON
     (( count++ ))

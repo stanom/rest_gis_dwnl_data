@@ -24,3 +24,28 @@ do
     (( count++ ))
 done
 echo `date`
+
+
+/***
+#progressmeter:
+#!/bin/bash
+count=1
+MaxID=20
+
+#let "1Perc = "
+jedno_percento=$( echo "${MaxID} / 100" |bc -l )
+#jedno_percento=$(bc -l <<<"${MaxID} / 100")
+#echo "${jedno_percento} * 5" |bc -l
+
+while [ ${count} -le ${MaxID} ]
+do
+vysledok=$( echo "${count} / ${jedno_percento}" |bc -l )
+printf "%.0f" `echo "${vysledok}" |tr -s '.' ','`
+#    let "kazdy_desiaty = ${count} % 2"
+#    if [[ ${kazdy_desiaty} -eq 0 ]];
+#        then printf "${count} ";
+#    fi
+    (( count++ ))
+sleep 1
+done
+***/
